@@ -9,6 +9,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+//Validar Detalhe do Plano
+//importe isso
+use App\Http\Requests\StoreUpdateDetailPlan;
+
 use App\Http\Controllers\Controller;
 use App\Models\DetailPlan;
 use App\Models\Plan;
@@ -51,7 +55,7 @@ class DetailPlanController extends Controller
         ]);
     }
 
-    public function store(Request $request, $urlPlan)
+    public function store(StoreUpdateDetailPlan $request, $urlPlan)
     {
         if(!$plan = $this->plan->where('url', $urlPlan)->first()) {
             return redirect()->back();
@@ -65,5 +69,70 @@ class DetailPlanController extends Controller
         $plan->details()->create($request->all());
     
         return redirect()->route('details.plan.index', $plan->url);
+    }
+
+    //Editar Detalhe do Plano
+    public function edit($urlPlan, $idDetail)
+    {   
+        $plan = $this->plan->where('url', $urlPlan)->first();
+        $detail = $this->repository->find($idDetail);
+        
+        if(!$plan || !$detail) {
+            return redirect()->back();
+        }
+
+        return view('admin.pages.plans.details.edit', [
+            //passa o plano ou o detalha que quer editar
+            'plan' => $plan,
+            'detail' => $detail,
+        ]);
+    }
+    //Editar Detalhe do Plano
+    public function update(StoreUpdateDetailPlan $request, $urlPlan, $idDetail)
+    {
+        $plan = $this->plan->where('url', $urlPlan)->first();
+        $detail = $this->repository->find($idDetail);
+        
+        if(!$plan || !$detail) {
+            return redirect()->back();
+        }
+
+        $detail->update($request->all());
+
+        return redirect()->route('details.plan.index', $plan->url);
+    }
+
+    //Deletar Detalhes do Plano
+    public function show($urlPlan, $idDetail)
+    {   
+        $plan = $this->plan->where('url', $urlPlan)->first();
+        $detail = $this->repository->find($idDetail);
+        
+        if(!$plan || !$detail) {
+            return redirect()->back();
+        }
+
+        return view('admin.pages.plans.details.show', [
+            //passa o plano ou o detalha que quer editar
+            'plan' => $plan,
+            'detail' => $detail,
+        ]);
+    }
+
+    public function destroy($urlPlan, $idDetail)
+    {
+        $plan = $this->plan->where('url', $urlPlan)->first();
+        $detail = $this->repository->find($idDetail);
+        
+        if(!$plan || !$detail) {
+            return redirect()->back();
+        }
+
+        $detail->delete();
+
+        return redirect()
+                    ->route('details.plan.index', $plan->url)
+                    //quando deletar o detalhe irá aparecer essa mensagem
+                    ->with('message', 'Registro deletado com sucesso');
     }
 }

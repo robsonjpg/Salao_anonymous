@@ -69,7 +69,20 @@ class PlanController extends Controller
     public function destroy($url)
     {
         //where recuperar certo e o find só pelo id, o first retorna um único registro
-        $plan = $this->repository->where('url', $url)->first();
+        $plan = $this->repository
+                        //Não Permitir Deletar Plano com Detalhes
+                        ->with('details')
+
+                        ->where('url', $url)
+                        ->first();
+        
+        //Não Permitir Deletar Plano com Detalhes
+        if ($plan->details->count() > 0) {
+            return redirect()
+                        ->back()
+                        ->with('error', 'Existem detalhes vinculados, portanto exclua os detalhes primeiro!');
+        }
+        
         //caso n encontrar volta
         if(!$plan)
             return redirect()->back();

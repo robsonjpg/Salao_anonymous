@@ -26,6 +26,9 @@
                     <strong>URL: </strong> {{ $plan->url }}
                 </li>
             </ul>
+            <!-- Não Permitir Deletar Plano com Detalhes -->
+            @include('admin.includes.alerts')
+
             <!--Deletar um plano faça isso-->
             <form action="{{ route('plans.destroy', $plan->url) }}" method="POST">
                 @csrf

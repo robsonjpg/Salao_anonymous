@@ -12,10 +12,18 @@ Route::prefix('admin')
     /**
      * Routes Details Plans
      */
-    
-    //Cadastrar Novo Detalhe Plano
+
+    //Cadastrar Novo Detalhe Plano (ESTE TEM QUE VIR ANTES DO SHOW)
     Route::post('plans/{url}/details', 'DetailPlanController@store')->name('details.plan.store');
     Route::get('plans/{url}/details/create', 'DetailPlanController@create')->name('details.plan.create');
+
+    //Deletar Detalhes do Plano
+    Route::delete('plans/{url}/details/{idDetail}', 'DetailPlanController@destroy')->name('details.plan.destroy');
+    Route::get('plans/{url}/details/{idDetail}', 'DetailPlanController@show')->name('details.plan.show');
+
+    //Editar o Detalhe do Plano
+    Route::put('plans/{url}/details/{idDetail}', 'DetailPlanController@update')->name('details.plan.update');
+    Route::get('plans/{url}/details/{idDetail}/edit', 'DetailPlanController@edit')->name('details.plan.edit');
 
     //Listar os Detalhes do Plano
     Route::get('plans/{url}/details', 'DetailPlanController@index')->name('details.plan.index');

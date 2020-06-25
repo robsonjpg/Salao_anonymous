@@ -28,11 +28,14 @@
 @section('content')
     <div class="card">
         <div class="card-body">
+
+            @include('admin.includes.alerts')
+
             <table class="table table-condensed">
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th width="50">Ações</th>
+                        <th width="250">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,8 +48,10 @@
                                 R$ {{ number_format($plan->price, 2, ',', '.') }}
                             </td>-->
                             <td style="width=10px">
-                                <a href="{{ route('plans.edit', $plan->url)}}" class="btn btn-info">EDITAR</a>
-                                <a href="{{ route('plans.show', $plan->url) }}" class="btn btn-warning">VER</a>
+                                <!--Editar o Detalhe do Plano-->
+                                <a href="{{ route('details.plan.edit', [$plan->url, $detail->id])}}" class="btn btn-info">EDITAR</a>
+                                <!--Deletar Detalhes do Plano-->
+                                <a href="{{ route('details.plan.show', [$plan->url, $detail->id]) }}" class="btn btn-warning">VER</a>
                             </td>
                         </tr>
                     @endforeach

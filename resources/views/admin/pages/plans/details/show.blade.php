@@ -1,8 +1,8 @@
-<!--Cadastrar Novo Detalhe Plano-->
+<!--Deletar Detalhes do Plano-->
 
 @extends('adminlte::page')
 
-@section('title', "Adicionar Novo Detalhe ao Serviço {$plan->name}")
+@section('title', "Detalhes do Serviço {$detail->name}")
 
 @section('content_header')
     <!--Breadcrumb - aquele negócio em cima-->
@@ -20,19 +20,28 @@
             <a href="{{ route('details.plan.index', $plan->url) }}">Detalhes</a>
         </li>
         <li class="breadcrumb-item active">
-            <a href="{{ route('details.plan.create', $plan->url) }}" class="active">Novo</a>
+            <a href="{{ route('details.plan.edit', [$plan->url, $detail->id]) }}" class="active">Detalhes</a>
         </li>
     </ol>
     <!--Melhorias no módulo de planos-->
     <!-- https://fontawesome.com/icons?d=gallery&q=add -->
-    <h1>Adicionar novo detalhe ao Serviço {{ $plan->name }}</h1>
+    <h1>Detalhe do Serviços {{ $detail->name }}</h1>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('details.plan.store', $plan->url) }}" method="post">
-                @include('admin.pages.plans.details._partials.form')
+            <ul>
+                <li>
+                    <strong>Nome: </strong> {{$detail->name}}
+                </li>
+            </ul>
+        </div>
+        <div class="card-footer">
+            <form action="{{ route('details.plan.destroy', [$plan->url, $detail->id]) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Deletar o Detalhe {{ $detail->name }}, do serviço {{ $plan->name }}</button>
             </form>
         </div>
     </div>
