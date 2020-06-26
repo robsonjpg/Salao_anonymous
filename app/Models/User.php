@@ -1,5 +1,12 @@
 <?php
 
+//Criar Model de Detalhes do Plano de Relacionamentos
+
+//ANTES DE TUDO, EU FUI NO TERMINAL E DIGITEI
+// php artisan make:model Models\Profile -m
+//Esse -m faz criar a migration tbm
+//PARA CRIAR ISSO AQUI, TENDEU?
+
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;

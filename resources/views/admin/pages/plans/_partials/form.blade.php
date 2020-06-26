@@ -1,4 +1,4 @@
-<!-- Atualizar o plano -->
+<!-- Cadastrar Perfil -->
 @include('admin.includes.alerts')
 
 <div class="form-group">

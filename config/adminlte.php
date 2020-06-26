@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Lara</b>Food',
+    'logo' => '<b>Anonymous</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -215,12 +215,20 @@ return [
             'topnav' => true,
         ],*/
         [
-            'text' => 'Planos',
+            'text' => 'Serviços',
             'url'  => 'admin/plans',
             //pra colocar um icone na frente do menu
             'icon' => 'fas fa-clipboard-list'
             //'can'  => 'manage-blog',
-        ]],
+        ],
+        [
+            'text' => 'Fornecedores',
+            'url'  => 'admin/profiles',
+            //pra colocar um icone na frente do menu
+            'icon' => 'fas fa-address-book'
+            //'can'  => 'manage-blog',
+        ],
+    ],
         //
         /*[
             'text'        => 'pages',

@@ -10,6 +10,20 @@ Route::prefix('admin')
             ->group(function(){
 
     /**
+     * Routes Profiles
+     */
+    //Filtrar Perfis
+    //ESSA ROTA TEM Q SER ANTES DE RESOURCE
+    Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
+
+    // Listar os Perfils
+    //AQUI UTILIZEI O RESOURCE, PORÉM ESSE É MAIS PRA API
+    Route::resource('profiles', 'ACL\ProfileController');
+    //Dps vai no terminar e digita
+    // php artisan make:controller Admin\ACL\ProfileController --resource
+
+    
+    /**
      * Routes Details Plans
      */
 
