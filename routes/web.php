@@ -10,6 +10,19 @@ Route::prefix('admin')
             ->group(function(){
 
     /**
+     * Routes Products
+     */
+    Route::any('products/search', 'ACL\ProductController@search')->name('products.search');
+    Route::resource('products', 'ACL\ProductController');
+
+    /**
+     * Routes Clients
+     */
+    Route::any('clients/search', 'ACL\ClientController@search')->name('clients.search');
+    Route::resource('clients', 'ACL\ClientController');
+
+
+    /**
      * Routes Profiles
      */
     //Filtrar Perfis

@@ -228,6 +228,20 @@ return [
             'icon' => 'fas fa-address-book'
             //'can'  => 'manage-blog',
         ],
+        [
+            'text' => 'Produtos',
+            'url'  => 'admin/products',
+            //pra colocar um icone na frente do menu
+            'icon' => 'fab fa-product-hunt'
+            //'can'  => 'manage-blog',
+        ],
+        [
+            'text' => 'Clientes',
+            'url'  => 'admin/clients',
+            //pra colocar um icone na frente do menu
+            'icon' => 'fas fa-smile'
+            //'can'  => 'manage-blog',
+        ],
     ],
         //
         /*[
